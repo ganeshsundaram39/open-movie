@@ -1,0 +1,10 @@
+{
+  "name": "open-movie",
+  "version": "1.0.0",
+  "description": "Website to search movie information",
+  "main": "index.js",
+  "scripts": {
+  },
+  "author": "Ganesh Sundaram",
+  "license": "ISC"
+}
