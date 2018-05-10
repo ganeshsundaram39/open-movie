@@ -20,14 +20,22 @@ body {
     text-rendering: optimizeLegibility;
     color: #555;
     font-weight: 400;
+    background-image:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),url(https://res.cloudinary.com/gscode/image/upload/v1525966943/open-movie-bg.jpg);
+
+    background-attachment: fixed;
+    background-size: contain;
+    height: 150vh;
+    background-position: center;
 }
 
-.container {
-    border: 1px solid #d2d2d2;
-    min-height: 100vh;
+.container.omovie {
+    border: 1px solid #555;
+    min-height: 130vh;
     max-width: 900px;
-    width: 70%;
-    box-shadow: -6px 9px 10px 0px #cac6c6;
+    width: 80%;
+    background: #fff;
+    margin: 10% auto;
+    display: none;
 }
 
 
@@ -39,6 +47,7 @@ body {
     padding: 1% 3%;
     background:var(--base);
     color: #000;
+    transform: skew(-6deg);
 }
 
 
@@ -50,16 +59,38 @@ body {
 }
 .search__bar{
     margin:1% 4%;
+    transform: skew(-6deg);
+}
+
+.search__bar form {
+    padding: 1%;
+    background: #e2e2de;
+}
+
+.search__bar div{
+    display: inline-block;
 }
 .search__bar input{
-    width: 25vw;
     border:0;
     padding: 2px;
-    border-bottom: 2px solid;
+    border-bottom: 2px solid #000;
     font-size: 0.9rem;
     letter-spacing: 1px;
     transform: scale(1);
     transition: all 0.2s;
+}
+
+.search__bar [name="title"]{
+    width:20vw;
+}
+
+.search__bar [name="year"]{
+    width:5vw;
+}
+
+.search__bar [name="id"]{
+    width:20vw;
+   display:none;
 }
 
 .search__bar input:active{
