@@ -1,0 +1,85 @@
+/*********************************************/
+
+/********** Basic setting **********/
+
+/*********************************************/
+
+:root {
+    font-size: 20px;
+    --base:#ffc107;
+}
+
+*:focus {
+    outline: none !important;
+    -webkit-appearance: none !important;
+}
+
+html,
+body {
+    font-family: "Open Sans", sans-serif;
+    text-rendering: optimizeLegibility;
+    color: #555;
+    font-weight: 400;
+}
+
+.container {
+    border: 1px solid #d2d2d2;
+    min-height: 100vh;
+    max-width: 900px;
+    width: 70%;
+    box-shadow: -6px 9px 10px 0px #cac6c6;
+}
+
+
+.logo {
+    font-family: "Monoton", cursive;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    margin: 2%;
+    padding: 1% 3%;
+    background:var(--base);
+    color: #000;
+}
+
+
+
+
+
+.logo>i{
+    font-size: 3rem;
+}
+.search__bar{
+    margin:1% 4%;
+}
+.search__bar input{
+    width: 25vw;
+    border:0;
+    padding: 2px;
+    border-bottom: 2px solid;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    transform: scale(1);
+    transition: all 0.2s;
+}
+
+.search__bar input:active{
+    transform: scale(1.1);
+}
+
+.search__bar button{
+    background: #212529;
+    padding: 3px 2%;
+    border: 0;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+    transition:all .4s ;
+    transform: scale(1);
+}
+
+.search__bar button:hover{
+    background:var(--base);
+    border-color:var(--base);
+    color:#000;
+    transform: scale(1.1);
+}
