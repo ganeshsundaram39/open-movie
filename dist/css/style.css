@@ -20,7 +20,7 @@ body {
     text-rendering: optimizeLegibility;
     color: #555;
     font-weight: 400;
-    background-image:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),url(https://res.cloudinary.com/gscode/image/upload/v1525966943/open-movie-bg.jpg);
+    background-image:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url(https://res.cloudinary.com/gscode/image/upload/v1525966943/open-movie-bg.jpg);
 
     background-attachment: fixed;
     background-size: contain;
@@ -62,15 +62,15 @@ body {
     transform: skew(-6deg);
 }
 
-.search__bar form {
+.search {
     padding: 1%;
     background: #e2e2de;
 }
 
-.search__bar div{
+.search div{
     display: inline-block;
 }
-.search__bar input{
+.search input{
     border:0;
     padding: 2px;
     border-bottom: 2px solid #000;
@@ -80,24 +80,24 @@ body {
     transition: all 0.2s;
 }
 
-.search__bar [name="title"]{
-    width:20vw;
+.search [name="title"]{
+    width:25vw;
 }
 
-.search__bar [name="year"]{
+.search [name="year"]{
     width:5vw;
 }
 
-.search__bar [name="id"]{
+.search [name="id"]{
     width:20vw;
    display:none;
 }
 
-.search__bar input:active{
+.search input:active{
     transform: scale(1.1);
 }
 
-.search__bar button{
+.search button{
     background: #212529;
     padding: 3px 2%;
     border: 0;
@@ -108,7 +108,7 @@ body {
     transform: scale(1);
 }
 
-.search__bar button:hover{
+.search button:hover{
     background:var(--base);
     border-color:var(--base);
     color:#000;

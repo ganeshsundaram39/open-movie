@@ -1,28 +1,35 @@
-import  'jquery';
+import "jquery";
+import { searchOption } from "./views/base";
+import {getInput} from "./views/searchView";
+import {Search} from "./models/Search";
 
-$('#search__type').on('click',function(e){
-    e.preventDefault();
+const state = {};
 
-    if($(this).val()==="id"){
+$(".search__type").on("click", searchOption);
 
-        $(this).val("title");
-        $(this).text("By IMDb ID");
+const controlSearch = async (page=1) => {
 
-        $('[name="id"]').hide();
-        $('.search__bar div').fadeIn("slow");
+    const userInput= getInput($('.search__type').val());
 
-    } else if($(this).val()==="title"){
+    userInput.page=page;
 
-        $(this).val("id");
-        $(this).text("By Title");
+    if(userInput.id){
 
-        $('.search__bar div').hide();
-        $('[name="id"]').fadeIn("slow");
+    } else if(userInput.title){
+        console.log(userInput);
+        state.search= new Search(userInput);
+
+        await state.search.getResults();
     }
+};
+
+$(".search").on("submit", e => {
+    e.preventDefault();
+    controlSearch();
 });
 
-$(function(){
-    setInterval(function(){
-        $('.container.omovie').fadeIn("slow");
-    },1500);
+$(() => {
+    setTimeout(() => {
+        $(".container.omovie").fadeIn("slow");
+    }, 1500);
 });
