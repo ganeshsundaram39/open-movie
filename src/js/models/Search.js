@@ -2,36 +2,32 @@ import 'jquery';
 
 export class Search {
     constructor(query) {
-        this.query = `s=${
-            query.title.replace(' ','+')
+
+        this._query = `s=${
+            query.title.replace(/ +(?= )/g,'').trim()
         }${
-            !isNaN(query.year)
-             ? "&y=" + query.year : ""
-        }${
-            query.page !== 1
-            ? "&p=" + query.page : ""
-        }`;
-        console.log(isNaN(query.year));
-        console.log(this.query);
+           $.isNumeric(query.year)? "&y=" + query.year : ""
+         }&p=${query.page}`;
+
+        console.log(`query:${this._query}`);
     }
 
     async getResults() {
-        // http://www.omdbapi.com/?s=whip&y=2014&apikey=eac24ac
+        // https://www.omdbapi.com/?s=whip&y=2014&apikey=eac24ac
         const key = "eac24ac";
         try{
-        const results= await $.ajax({
+        this.results= await $.ajax({
             type: "GET",
             dataType: "json",
             timeout:3000,
             beforeSend:()=>{
 
             },
-            url: `http://www.omdbapi.com/?${this.query}&apikey=${key}`,
+            url: `http://www.omdbapi.com/?${this._query}&apikey=${key}`,
             complete:()=>{
 
             }
         });
-       console.log(results);
         }catch(error){
             console.log(error);
         }

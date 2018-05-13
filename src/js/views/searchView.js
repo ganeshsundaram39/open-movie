@@ -12,3 +12,10 @@ export const getInput = type => {
         };
     }
 };
+
+export const renderSearchList = searchResults =>{
+
+    for (let single of searchResults){
+        console.log(single);
+    }
+};

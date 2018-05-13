@@ -1,6 +1,6 @@
 import "jquery";
 import { searchOption } from "./views/base";
-import {getInput} from "./views/searchView";
+import {getInput,renderSearchList} from "./views/searchView";
 import {Search} from "./models/Search";
 
 const state = {};
@@ -16,10 +16,17 @@ const controlSearch = async (page=1) => {
     if(userInput.id){
 
     } else if(userInput.title){
-        console.log(userInput);
+        console.log(`userInput:${JSON.stringify(userInput,null,2)}`);
         state.search= new Search(userInput);
 
         await state.search.getResults();
+
+        console.log(`Results:${JSON.stringify(state.search.results,null,2)}`)
+        if(state.search.results.Response==="True"){
+            renderSearchList(state.search.results.Search);
+        } else {
+            console.log(state.search.results.Error);
+        }
     }
 };
 
