@@ -7,6 +7,7 @@
 :root {
     font-size: 20px;
     --base:#ffc107;
+    --secondary:#23272b;
 }
 
 *:focus {
@@ -28,6 +29,10 @@ body {
     background-position: center;
 }
 
+
+
+
+
 .container.omovie {
     border: 1px solid #555;
     min-height: 130vh;
@@ -40,6 +45,8 @@ body {
 }
 
 
+
+
 .logo {
     font-family: "Monoton", cursive;
     font-size: 2.5rem;
@@ -50,10 +57,6 @@ body {
     color: #000;
     transform: skew(-6deg);
 }
-
-
-
-
 
 .logo>i{
     font-size: 3rem;
@@ -99,7 +102,7 @@ body {
 }
 
 .search button{
-    background: #212529;
+    background:var(--secondary);
     padding: 3px 2%;
     border: 0;
     color: #fff;
@@ -117,6 +120,12 @@ body {
 }
 
 
+
+
+
+
+
+
 .results .container {
     margin: 1% 0;
 }
@@ -128,9 +137,27 @@ body {
 }
 
 .results .card {
-    margin:1%;
+    transition: all .2s;
 }
 
-.results .card-body{
-    text-align: center;
+.results .card:hover {
+    transform:translateY(5px);
+    box-shadow: 0px 4px 20px 0px #dfdede;
 }
+
+.results .col-sm-5 {
+    margin:4% 2%;
+}
+
+.results .card-img-top{
+    border-bottom: 1px solid rgba(0,0,0,.125);
+}
+
+.results h5 {
+    font-size: 1.2rem;
+}
+
+.results h6 {
+    font-size: 0.9rem;
+}
+

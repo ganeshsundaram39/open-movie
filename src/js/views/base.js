@@ -1,5 +1,3 @@
-import "jquery";
-
 const searchByTitleYear = current => {
     current.val("title");
     current.text("By IMDb ID");
@@ -14,7 +12,7 @@ const searchByIMDbId = current => {
     current.text("By Title");
 
     $('.search__bar [name="title"]').val("");
-    $('.search__bar [name="id"]').val("");
+    $('.search__bar [name="year"]').val("");
     $(".search__bar div").hide();
     $('.search__bar [name="id"]').fadeIn("slow");
 };
