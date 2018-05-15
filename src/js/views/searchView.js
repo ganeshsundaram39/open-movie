@@ -1,12 +1,12 @@
 export const getInput = type => {
     if (type === "title") {
         return {
-            title: $(`.search__bar [name="title"]`).val(),
-            year: $(`.search__bar [name="year"]`).val()
+            title: $(`.search [name="title"]`).val(),
+            year: $(`.search [name="year"]`).val()
         };
     } else if (type === "id") {
         return {
-            id: $(`.search__bar [name="id"]`).val()
+            id: $(`.search [name="id"]`).val()
         };
     }
 };
@@ -14,7 +14,7 @@ export const getInput = type => {
 const listItemHTML = single => {
     return `<div class="col-sm-5">
                          <div class="card text-center">
-                            <img class="card-img-top" src="${single.Poster!=="N/A"?single.Poster:"./img/not-available.jpg"}" alt="${single.Title.toLowerCase()}">
+                            <img class="card-img-top" src="${single.Poster!=="N/A"?single.Poster:"./img/not-available.jpg"}" alt="${single.Title.toLowerCase()}"  onerror="this.onerror=null; this.src='./img/not-available.jpg'">
                             <div class="card-body">
                                 <h5 class="card-title">${single.Title}</h5>
                                 <h6 class="card-subtitle mb-2 text-muted"><span class="year">(${single.Year})</span>
@@ -30,3 +30,4 @@ export const renderSearchList = searchResults => {
        $(".results .row").append(listItemHTML(single));
     }
 };
+

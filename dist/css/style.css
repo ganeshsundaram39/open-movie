@@ -29,6 +29,40 @@ body {
     background-position: center;
 }
 
+.loader i{
+    font-size: 4rem;
+    color:var(--secondary);
+    display: inline-block;
+    animation: rotate 1s linear infinite;
+}
+
+@keyframes rotate{
+    to
+    {
+        transform: rotate(360deg);
+    }
+}
+
+.back__to--top {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 999;
+    font-size: 2rem;
+    margin: 0 1% 1% 0;
+    padding: 0px 1%;
+    color: var(--secondary);
+    border: 2px solid var(--secondary);
+    background: var(--base);
+    border-radius: 50%;
+    transition: all .3s;
+    cursor: pointer;
+}
+
+.back__to--top:hover{
+    transform:translateY(-5px);
+}
 
 
 
@@ -120,7 +154,11 @@ body {
 }
 
 
-
+.title {
+    margin:2%;
+    font-weight:700;
+    text-align: center;
+}
 
 
 
