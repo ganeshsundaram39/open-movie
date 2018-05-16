@@ -41,3 +41,19 @@ export const errorMessageUser = ()=>{
      return 'IMDb id '+$('.search [name="id"]').val();
     }
 };
+
+export const backToTopVisibility= ()=>{
+    if ($(window).scrollTop() < 100) {
+        $(".back__to--top").hide();
+    } else {
+        $(".back__to--top").show();
+    }
+};
+
+export const scrollToTop = () => {
+    $("html, body").animate({ scrollTop: 0 }, "slow");
+    return false;
+};
+
+
+

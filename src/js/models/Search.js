@@ -1,3 +1,5 @@
+import {key} from '../config';
+
 export class Search {
     constructor(query) {
         this._query = `s=${
@@ -10,7 +12,7 @@ export class Search {
 
     async getResults() {
         // https://www.omdbapi.com/?s=whip&y=2014&apikey=eac24ac
-        const key = "eac24ac";
+
         try {
             this._results = await $.ajax({
                 type: "GET",
@@ -20,9 +22,9 @@ export class Search {
 
                     if (this._page === 1){
                         $('.title').text('');
-                        $(".results .row").html("");
+                        $(".search__results .row").html("");
                     }
-                    $(".results .container").append('<div class="text-center loader"><i class="ion-android-refresh"></i></div');
+                    $(".search__results .container").append('<div class="text-center loader"><i class="ion-android-refresh"></i></div');
                 },
                 url: `https://www.omdbapi.com/?${this._query}&apikey=${key}`,
                 complete: () => {
@@ -31,7 +33,9 @@ export class Search {
             });
         } catch (error) {
             console.log(error);
-            if (this._page === 1) $('.title').text('Some Error..!! Please Try Again..!!');
+            console.error('sometimes it fails to load ');
+            console.info('refresh and try it again')
+            if (this._page === 1) $('.title').text('Some Error..!! Refresh And Try Again..!!');
         }
     }
 }

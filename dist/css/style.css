@@ -66,6 +66,11 @@ body {
 
 
 
+.btn-dark.focus, .btn-dark:focus {
+    box-shadow: none;
+}
+
+
 
 .container.omovie {
     border: 1px solid #555;
@@ -164,38 +169,38 @@ body {
 
 
 
-.results .container {
+.search__results .container {
     margin: 1% 0;
 }
 
-.results .row {
+.search__results .row {
     padding: 1% 5%;
     display: flex;
     justify-content: space-between;
 }
 
-.results .card {
+.search__results .card {
     transition: all .2s;
 }
 
-.results .card:hover {
+.search__results .card:hover {
     transform:translateY(5px);
     box-shadow: 0px 4px 20px 0px #dfdede;
 }
 
-.results .col-sm-5 {
+.search__results .col-sm-5 {
     margin:4% 2%;
 }
 
-.results .card-img-top{
+.search__results .card-img-top{
     border-bottom: 1px solid rgba(0,0,0,.125);
 }
 
-.results h5 {
+.search__results h5 {
     font-size: 1.2rem;
 }
 
-.results h6 {
+.search__results h6 {
     font-size: 0.9rem;
 }
 

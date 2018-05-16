@@ -27,7 +27,7 @@ const listItemHTML = single => {
 
 export const renderSearchList = searchResults => {
     for (let single of searchResults) {
-       $(".results .row").append(listItemHTML(single));
+       $(".search__results .row").append(listItemHTML(single));
     }
 };
 

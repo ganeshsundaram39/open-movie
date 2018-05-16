@@ -1,10 +1,16 @@
 import "jquery";
-import { searchOption, errorMessageUser } from "./views/base";
+import {
+    searchOption,
+    errorMessageUser,
+    backToTopVisibility,
+    scrollToTop
+} from "./views/base";
 import { getInput, renderSearchList } from "./views/searchView";
 import { Search } from "./models/Search";
+import {FullDetails} from './models/FullDetails';
 
 const state = {};
-// window.state = state;
+window.state = state;
 
 $(".search__type").on("click", searchOption);
 
@@ -22,9 +28,9 @@ const controlSearch = async (page = 1) => {
 
         if (state.search._results.Response === "True") {
             if (page === 1)
-            $(".title").text(
-                `${state.search._results.totalResults} results found..`
-            );
+                $(".title").text(
+                    `${state.search._results.totalResults} results found..`
+                );
             renderSearchList(state.search._results.Search);
         } else if (state.search._results.Response === "False") {
             console.log(state.search._results.Error);
@@ -41,13 +47,29 @@ $(".search").on("submit", e => {
     controlSearch();
 });
 
-const pagination = () => {
 
-    if ($(window).scrollTop() === 0) {
-        $(".back__to--top").hide();
-    } else {
-        $(".back__to--top").fadeIn("slow");
-    }
+const controlFullDetails= async()=>{
+    // Get ID from url
+    const id = window.location.hash.replace("#", "");
+
+    if (!id) return;
+
+    state.fullDetails = new FullDetails(id);
+
+    await state.fullDetails.getDetails();
+
+    console.log(state.fullDetails._results);
+};
+
+
+
+
+["hashchange", "load"].forEach(eventType =>
+    $(window).on(eventType, controlFullDetails)
+);
+
+const pagination = () => {
+    backToTopVisibility();
 
     if (
         !(
@@ -57,23 +79,21 @@ const pagination = () => {
         )
     )return;
 
-    if ($(window).scrollTop() + $(window).height()> $(document).height()-50) {
+    if (
+        $(window).scrollTop() + $(window).height() >
+        $(document).height() - 100
+    ) {
         if (Number(state.search._results.totalResults) > 10) {
             if (
                 state.search._page <
                 Math.ceil(Number(state.search._results.totalResults) / 10)
-            )
-                controlSearch(++state.search._page);
+            ) controlSearch(++state.search._page);
+
         }
     }
 };
 
 $(window).scroll(pagination);
-
-const scrollToTop = () => {
-    $("html, body").animate({ scrollTop: 0 }, "slow");
-    return false;
-};
 
 $(".back__to--top").click(scrollToTop);
 
