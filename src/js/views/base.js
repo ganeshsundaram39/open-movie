@@ -43,7 +43,7 @@ export const errorMessageUser = ()=>{
 };
 
 export const backToTopVisibility= ()=>{
-    if ($(window).scrollTop() < 100) {
+    if ($(window).scrollTop() < 200) {
         $(".back__to--top").hide();
     } else {
         $(".back__to--top").show();

@@ -58,6 +58,7 @@ body {
     border-radius: 50%;
     transition: all .3s;
     cursor: pointer;
+    box-shadow: 2px 2px #f8f9fa;
 }
 
 .back__to--top:hover{
@@ -159,15 +160,18 @@ body {
 }
 
 
-.title {
+
+
+
+.search__results{
+    display: none;
+}
+
+.search__results .title {
     margin:2%;
     font-weight:700;
     text-align: center;
 }
-
-
-
-
 
 .search__results .container {
     margin: 1% 0;
@@ -203,4 +207,84 @@ body {
 .search__results h6 {
     font-size: 0.9rem;
 }
+
+
+
+
+.full__details .container{
+    padding: 0 5%;
+    margin: 2% 0;
+}
+
+.full__details .back {
+    display: inline-block;
+    cursor: pointer;
+    color:var(--secondary);
+    margin-bottom: 2%;
+    transition: all .2s;
+}
+
+.full__details .back::after{
+    content: "";
+    display: block;
+    width: 30px;
+    height: 3px;
+    background-color: #ffc107;
+    margin-top: -10px;
+}
+
+.full__details .back:hover{
+    transform:translateX(-5px);
+}
+
+
+.full__details .back i {
+font-size: 2rem;
+}
+
+.full__details .title {
+    height: 15vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--secondary);
+    margin-bottom: 2%;
+    background: #e2e2de;
+    padding: 3%;
+}
+
+.full__details .name {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.full__details .name i {
+    color: #000;
+}
+
+.imdb__votes i{
+    font-size: 2rem;
+    color:#E1B823;
+    display: inline-block;
+}
+.imdb__votes i:hover{
+    animation: rotate 0.1s linear infinite;
+
+}
+
+.full__details .row {
+    margin:0;
+}
+
+.full__details .poster {
+    padding-right: 3%;
+}
+
+.full__details .details {
+    flex: 1;
+    background: #e2e2de;
+    font-size: 0.8rem;
+    padding: 2%;
+}
+
 
