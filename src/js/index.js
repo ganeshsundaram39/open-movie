@@ -5,9 +5,10 @@ import {
     backToTopVisibility,
     scrollToTop
 } from "./views/base";
-import { getInput, renderSearchList } from "./views/searchView";
 import { Search } from "./models/Search";
-import {FullDetails} from './models/FullDetails';
+import { getInput, renderSearchList } from "./views/searchView";
+import { FullDetails } from './models/FullDetails';
+import { renderFullDetails } from "./views/detailsView";
 
 const state = {};
 window.state = state;
@@ -20,6 +21,8 @@ const controlSearch = async (page = 1) => {
     userInput.page = page;
 
     if (userInput.id) {
+
+
     } else if (userInput.title) {
         state.search = new Search(userInput);
         await state.search.getResults();
@@ -28,14 +31,14 @@ const controlSearch = async (page = 1) => {
 
         if (state.search._results.Response === "True") {
             if (page === 1)
-                $(".title").text(
+                $(".search__results .title").text(
                     `${state.search._results.totalResults} results found..`
                 );
             renderSearchList(state.search._results.Search);
         } else if (state.search._results.Response === "False") {
             console.log(state.search._results.Error);
             if (page === 1)
-                $(".title").text(
+                $("search__results .title").text(
                     `No results found for ${errorMessageUser()}..`
                 );
         }
@@ -48,7 +51,7 @@ $(".search").on("submit", e => {
 });
 
 
-const controlFullDetails= async()=>{
+const controlFullDetails = async () => {
     // Get ID from url
     const id = window.location.hash.replace("#", "");
 
@@ -58,7 +61,19 @@ const controlFullDetails= async()=>{
 
     await state.fullDetails.getDetails();
 
-    console.log(state.fullDetails._results);
+    //console.log(`Results:${JSON.stringify(state.fullDetails._results, null, 2)}`);
+    if (!state.fullDetails._results) return;
+
+    if (state.fullDetails._results.Response === "True") {
+        $('.full__details').show();
+        $('.search__results').hide();
+        renderFullDetails(state.fullDetails._results);
+    } else if (state.fullDetails._results.Response === "False") {
+        $('.full__details').hide();
+        $('.search__results').show();
+        console.log(state.fullDetails._results.Error);
+
+    }
 };
 
 
@@ -77,7 +92,7 @@ const pagination = () => {
             state.search._results &&
             state.search._results.Response === "True"
         )
-    )return;
+    ) return;
 
     if (
         $(window).scrollTop() + $(window).height() >
