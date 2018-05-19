@@ -1,15 +1,3 @@
-export const getInput = type => {
-    if (type === "title") {
-        return {
-            title: $(`.search [name="title"]`).val(),
-            year: $(`.search [name="year"]`).val()
-        };
-    } else if (type === "id") {
-        return {
-            id: $(`.search [name="id"]`).val()
-        };
-    }
-};
 
 const listItemHTML = single => {
     return `<div class="col-sm-5">
@@ -29,7 +17,7 @@ export const renderSearchList = searchResults => {
     // for (let single of searchResults) {
     //    $(".search__results .row").append(listItemHTML(single));
     // }
-    $(".search__results .row").html(
+    $(".search__results .row").append(
         searchResults.map(single=>listItemHTML(single)).join('')
     );
 };

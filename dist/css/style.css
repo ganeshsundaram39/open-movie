@@ -21,9 +21,7 @@ body {
     text-rendering: optimizeLegibility;
     color: #555;
     font-weight: 400;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-        url(../img/open-movie-bg.jpg);
-
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url(../img/open-movie-bg.jpg);
     background-attachment: fixed;
     background-size: contain;
     height: 150vh;
@@ -156,7 +154,7 @@ body {
 /* .search__results {
     display: none;
 } */
-
+.full__details .error,
 .search__results .title {
     margin: 2%;
     font-weight: 700;
@@ -208,7 +206,7 @@ body {
 }
 
 .full__details .back {
-    display: inline-block;
+    display: none;
     cursor: pointer;
     color: var(--secondary);
     margin-bottom: 2%;
@@ -308,6 +306,21 @@ body {
 
 .details .plot {
     margin-top: 7%;
+}
+
+.details .more{
+    display: none;
+}
+
+.details .show__more {
+    color: #007bff;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.details .show__more:hover{
+    color: #0056b3;
+    text-decoration: underline;
 }
 
 .details .value {

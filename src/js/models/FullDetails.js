@@ -11,9 +11,7 @@ export class FullDetails {
                 type: "GET",
                 dataType: "json",
                 timeout: 3000,
-                beforeSend: () => {
-
-                },
+                beforeSend: () => {},
                 url: `http://www.omdbapi.com/?i=${
                     this._imdbId
                 }&plot=full&apikey=${key}`,
@@ -21,6 +19,8 @@ export class FullDetails {
             });
         } catch (error) {
             console.log(error);
+            console.error('sometimes it fails to load ');
+            console.info('Click again')
         }
     }
 }

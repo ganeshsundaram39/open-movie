@@ -1,3 +1,16 @@
+export const getInput = type => {
+    if (type === "title") {
+        return {
+            title: $(`.search [name="title"]`).val(),
+            year: $(`.search [name="year"]`).val()
+        };
+    } else if (type === "id") {
+        return {
+            id: $(`.search [name="id"]`).val()
+        };
+    }
+};
+
 const searchByTitleYear = current => {
     current.val("title");
     current.text("By IMDb ID");
@@ -55,5 +68,20 @@ export const scrollToTop = () => {
     return false;
 };
 
+export const showSearchView = () =>{
+    $('.full__details').hide();
+    $('.search__results').show();
+    $(".full__details .container").html('');
+};
 
+export const hideSearchView = () => {
+    $('.search__results').hide();
+    $('.full__details').show();
+};
+
+export const removeHtml= () =>{
+    $(".full__details .container").html("");
+    $(".search__results .row").html('');
+    $(".search__results .title").text('');
+};
 
