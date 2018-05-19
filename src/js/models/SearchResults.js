@@ -33,9 +33,10 @@ export class Search {
             });
         } catch (error) {
             console.log(error);
-            console.error('sometimes it fails to load ');
+            console.error('Something wrong with the api..!! Sometimes it fails to load.');
             console.info('refresh and try it again')
-            if (this._page === 1) $('.title').text('Some Error..!! Refresh And Try Again..!!');
+            $(".full__details .container").html("");
+            if (this._page === 1) $('.search__results .title').text('Some Error..!! Refresh And Try Again..!!');
         }
     }
 }

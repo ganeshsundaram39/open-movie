@@ -263,15 +263,22 @@ body {
     margin: 0;
 }
 
-.full__details .poster {
+/* .full__details .poster {
     padding-right: 3%;
-}
+} */
 
 .full__details .details {
-    flex: 1;
     background: #e2e2de;
     font-size: 0.8rem;
     padding: 2%;
+}
+
+.full__details .col-5{
+    padding-left:0;
+}
+
+.full__details .col-7{
+    padding:0;
 }
 
 .details .header {
@@ -331,4 +338,8 @@ body {
 
 .details .source {
     word-spacing: 1px;
+}
+
+.details .sub a{
+    word-break: break-all;
 }

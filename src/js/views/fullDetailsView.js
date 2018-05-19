@@ -1,4 +1,4 @@
-import { showSearchView } from "./base";
+import { showSearchView,minToHour } from "./base";
 
 const backButton = () =>
    `<div class="back"><i class="ion-ios-arrow-back"></i>Back</div>`;
@@ -24,7 +24,9 @@ const bunchHtml = bunch => {
     let output = "";
     for (let b in bunch) {
         if (bunch[b]&&bunch[b] !== "N/A") {
-            if (b !== "country") {
+            if(b==='runtime'){
+                output += minToHour(bunch[b]);
+            } else if (b !== "country") {
                 output += bunch[b];
             } else {
                 output += ` (${bunch[b]})`;
@@ -38,7 +40,7 @@ const bunchHtml = bunch => {
 };
 
 const plotHtml = plot => {
-    if (plot && plot !== "N/A") {
+    if (plot !== "N/A") {
         if (plot.length <= 400) {
             return `<div class="sub plot">${plot}</div>`;
         } else {
@@ -106,7 +108,7 @@ const otherDetailsHtml = otherData => {
     }${
         otherData.Awards && otherData.Awards !== "N/A" ? awardsHtml(otherData.Awards) : ""
     }${
-        otherData.Ratings && otherData.Ratings !== "N/A" ? ratingsHtml(otherData.Ratings) : ""
+        otherData.Ratings && otherData.Ratings.length!==0 ? ratingsHtml(otherData.Ratings) : ""
     }${
         commonHtml({
         Production: otherData.Production,
@@ -127,13 +129,13 @@ export const renderFullDetails = data => {
             year: data.Year,
             imdbRating: data.imdbRating
             })
-            }</div><div class="row">${
+            }</div><div class="row"><div class="col-5">${
                 posterHtml({
                 url:data.Poster !== "N/A"
                 ? data.Poster
                 : "./img/not-available.jpg",
                 title: data.Title
-        })} <div class="details">${otherDetailsHtml(data)}</div></div>`
+        })}</div><div class="col-7"><div class="details">${otherDetailsHtml(data)}</div></div></div>`
     );
 };
 

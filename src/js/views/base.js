@@ -77,6 +77,7 @@ export const showSearchView = () =>{
 export const hideSearchView = () => {
     $('.search__results').hide();
     $('.full__details').show();
+    scrollToTop();
 };
 
 export const removeHtml= () =>{
@@ -85,3 +86,11 @@ export const removeHtml= () =>{
     $(".search__results .title").text('');
 };
 
+export const minToHour = min => {
+    const minutes = Number(min.split(' ')[0]);
+    if(minutes>=60){
+    return `${Math.floor(minutes/60)}h ${minutes%60===0?'':minutes%60+'m'}`;
+    } else {
+        return min;
+    }
+};

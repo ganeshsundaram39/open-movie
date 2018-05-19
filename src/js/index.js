@@ -30,6 +30,8 @@ const controlSearch = async (page = 1) => {
 
     } else if (userInput.title) {
         state.search = new Search(userInput);
+
+        showSearchView();
         await state.search.getResults();
         //console.log(`Results:${JSON.stringify(state.search._results, null, 2)}`);
         if (!state.search._results) return;
@@ -39,7 +41,6 @@ const controlSearch = async (page = 1) => {
                 $(".search__results .title").text(
                     `${state.search._results.totalResults} results found..`
                 );
-            showSearchView();
             renderSearchList(state.search._results.Search);
 
         } else if (state.search._results.Response === "False") {

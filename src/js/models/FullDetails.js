@@ -19,7 +19,7 @@ export class FullDetails {
             });
         } catch (error) {
             console.log(error);
-            console.error('sometimes it fails to load ');
+            console.error('Something wrong with the api..!! Sometimes it fails to load.');
             console.info('Click again')
         }
     }
