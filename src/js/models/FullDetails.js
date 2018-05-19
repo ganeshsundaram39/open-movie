@@ -12,7 +12,7 @@ export class FullDetails {
                 dataType: "json",
                 timeout: 3000,
                 beforeSend: () => {},
-                url: `http://www.omdbapi.com/?i=${
+                url: `https://www.omdbapi.com/?i=${
                     this._imdbId
                 }&plot=full&apikey=${key}`,
                 complete: () => {}
