@@ -1,5 +1,6 @@
 
 @media (min-width: 576px) {
+    /* base font */
     :root {
         font-size:18px;
     }
@@ -10,21 +11,24 @@
  }
 
 @media (min-width: 768px) {
-
+    /* increase font */
     :root{
         font-size: 20px;
     }
 
+    /* center the main container */
     .container.omovie{
     margin: 10% auto;
     width: 80%;
     padding-top: 10px;
     }
 
+    /* back to top padding */
     .back__to--top{
     padding: 0px 1%;
     }
 
+    /* search bar  */
     .search div {
         width: auto;
         margin-bottom: 0;
@@ -37,6 +41,8 @@
         width: 8vw;
     }
 
+
+    /* // poster image */
     .full__details .poster {
         width:38%;
         margin-right: 2%;

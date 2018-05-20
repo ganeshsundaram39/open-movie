@@ -1,8 +1,10 @@
-import { showSearchView,minToHour, formatUrl } from "./base";
+import { showSearchView, minToHour, formatUrl } from "./base";
 
+// back button html
 const backButton = () =>
-   `<div class="back"><i class="ion-ios-arrow-back"></i>Back</div>`;
+    `<div class="back"><i class="ion-ios-arrow-back"></i>Back</div>`;
 
+// header section in full details
 const headerHtml = head => `<div class="name">
                                     <i class="ion-arrow-right-b"></i> ${
                                         head.title
@@ -14,24 +16,33 @@ const headerHtml = head => `<div class="name">
         : ""
 }`;
 
+
+// Poster image of movie
 const posterHtml = poster => `<div class="poster">
-                    <img src="${
-                        formatUrl(poster.url)
-                    }" alt="${poster.title.toLowerCase()}" class="img-fluid" onerror="this.onerror=null; this.src='./img/not-available.jpg'">
+                    <img src="${formatUrl(
+                        poster.url
+                    )}" alt="${poster.title.toLowerCase()}" class="img-fluid" onerror="this.onerror=null; this.src='./img/not-available.jpg'">
                     </div>`;
 
+
+// bunch of field shown without header
 const bunchHtml = bunch => {
     let output = "";
     for (let b in bunch) {
-        if (bunch[b]&&bunch[b] !== "N/A") {
-            if(b==='runtime'){
+
+        // check if it exists
+        if (bunch[b] && bunch[b] !== "N/A") {
+
+            // if the field is runtime then convert it into hours and minutes
+            if (b === "runtime") {
                 output += minToHour(bunch[b]);
             } else if (b !== "country") {
                 output += bunch[b];
             } else {
-                output += ` (${bunch[b]})`;
+                output += ` (${bunch[b]})`;  // if its country add parentesis
             }
 
+            // add bar
             if (b !== "country" && b !== "released") output += " | ";
         }
     }
@@ -39,8 +50,14 @@ const bunchHtml = bunch => {
     return output;
 };
 
+
+// movie summary
 const plotHtml = plot => {
     if (plot !== "N/A") {
+
+        // if more than 400 convert it into two section
+        // show it using show more link
+
         if (plot.length <= 400) {
             return `<div class="sub plot">${plot}</div>`;
         } else {
@@ -55,6 +72,8 @@ const plotHtml = plot => {
     }
 };
 
+
+// common fields  which will have header and sub
 const commonHtml = common => {
     let output = "";
     for (let c in common) {
@@ -66,9 +85,12 @@ const commonHtml = common => {
     return output;
 };
 
+
+// ratings section
 const ratingsHtml = ratings => {
     let output = '<div class="header">Ratings</div><div class="sub ratings">';
 
+    // map through each ratings and then join the html
     output += ratings
         .map(
             rating =>
@@ -81,63 +103,68 @@ const ratingsHtml = ratings => {
     return output + "</div>";
 };
 
+// award html
 const awardsHtml = awards =>
     `<div class="header">Awards</div><div class="sub awards">${awards}</div>`;
 
-const websiteHtml = website =>
-    `<div class="header">Website</div><div class="sub"><a href="${formatUrl(website)}">${formatUrl(website)}</a></div>`;
 
-const otherDetailsHtml = otherData => `<div class="header bunch">${
-        bunchHtml({
+// website html
+const websiteHtml = website =>
+    `<div class="header">Website</div><div class="sub"><a href="${formatUrl(
+        website
+    )}">${formatUrl(website)}</a></div>`;
+
+
+//  other details section
+const otherDetailsHtml = otherData =>
+    `<div class="header bunch">${bunchHtml({
         rated: otherData.Rated,
         runtime: otherData.Runtime,
         genre: otherData.Genre,
         language: otherData.Language,
         released: otherData.Released,
         country: otherData.Country
-    })
-    }</div>${
-        plotHtml(otherData.Plot)
-    }${
-        commonHtml({
+    })}</div>${plotHtml(otherData.Plot)}${commonHtml({
         Actors: otherData.Actors,
         Writer: otherData.Writer,
         Director: otherData.Director
-    })
+    })}${
+        otherData.Awards && otherData.Awards !== "N/A"
+            ? awardsHtml(otherData.Awards)
+            : ""
     }${
-        otherData.Awards && otherData.Awards !== "N/A" ? awardsHtml(otherData.Awards) : ""
-    }${
-        otherData.Ratings && otherData.Ratings.length!==0 ? ratingsHtml(otherData.Ratings) : ""
-    }${
-        commonHtml({
+        otherData.Ratings && otherData.Ratings.length !== 0
+            ? ratingsHtml(otherData.Ratings)
+            : ""
+    }${commonHtml({
         Production: otherData.Production,
         BoxOffice: otherData.BoxOffice
-    })
-    }${
-        otherData.Website && otherData.Website !== "N/A" ? websiteHtml(otherData.Website) : ""
+    })}${
+        otherData.Website && otherData.Website !== "N/A"
+            ? websiteHtml(otherData.Website)
+            : ""
     }`;
 
-
+    // 3 sections
+    // header
+    // poster
+    // otherdetails
 export const renderFullDetails = data => {
     $(".full__details .container").html(
-        `${
-            backButton()
-            }<div class="title">${
-            headerHtml({
+        `${backButton()}<div class="title">${headerHtml({
             title: data.Title,
             year: data.Year,
             imdbRating: data.imdbRating
-            })
-            }</div><div class="row">${
-                posterHtml({
-                url:data.Poster !== "N/A"
-                ? data.Poster
-                : "./img/not-available.jpg",
-                title: data.Title
+        })}</div><div class="row">${posterHtml({
+            url:
+                data.Poster !== "N/A" ? data.Poster : "./img/not-available.jpg",
+            title: data.Title
         })}<div class="details">${otherDetailsHtml(data)}</div></div>`
     );
 };
 
+
+// show more movie summary
 export const showMorePlot = function(e) {
     $(".details .more").show();
     $(this).hide();

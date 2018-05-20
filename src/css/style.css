@@ -29,6 +29,12 @@ body {
 
 }
 
+
+
+
+
+
+/* loader  */
 .loader i {
     font-size: 4rem;
     color: var(--secondary);
@@ -36,12 +42,19 @@ body {
     animation: rotate 1s linear infinite;
 }
 
+/* rotate animation for loader */
 @keyframes rotate {
     to {
         transform: rotate(360deg);
     }
 }
 
+
+
+
+
+
+/* // back to top button  */
 .back__to--top {
     display: none;
     position: fixed;
@@ -64,6 +77,10 @@ body {
     transform: translateY(-5px);
 }
 
+
+
+
+
 .btn-dark.focus,
 .btn-dark:focus {
     box-shadow: none;
@@ -74,6 +91,11 @@ body {
 .row {
     margin:0;
 }
+
+
+
+
+/* main container */
 .container.omovie {
     border: 1px solid #555;
     min-height: 130vh;
@@ -98,6 +120,8 @@ body {
 .logo > i {
     font-size: 3rem;
 }
+
+/* search bar section */
 .search__bar {
     margin: 1% 4%;
     transform: skew(-6deg);
@@ -162,6 +186,15 @@ body {
 /* .search__results {
     display: none;
 } */
+
+
+
+
+
+
+
+
+
 .full__details .error,
 .search__results .title {
     margin: 2%;
@@ -169,6 +202,9 @@ body {
     text-align: center;
 }
 
+
+
+/* search results section  */
 .search__results .container {
     margin: 1% auto;
 }
@@ -204,6 +240,13 @@ body {
     font-size: 0.9rem;
 }
 
+
+
+
+
+
+
+/* full details section */
 .full__details{
     display:none;
 }
@@ -258,6 +301,9 @@ body {
     color: #000;
 }
 
+
+
+/* imdb votes in full details section */
 .imdb__votes{
     display: none;
 }
@@ -271,20 +317,13 @@ body {
     animation: rotate 0.1s linear infinite;
 }
 
+
+
+
+
+/* reset bootstrap settings */
 .full__details .row {
     margin: 0;
-}
-
-.full__details .poster {
-    text-align: center;
-    width: 100%;
-}
-
-.full__details .details {
-    background: #e2e2de;
-    font-size: 0.8rem;
-    padding: 2%;
-    width:100%
 }
 
 .full__details .col-5{
@@ -293,6 +332,33 @@ body {
 
 .full__details .col-7{
     padding:0;
+}
+
+
+
+
+/* full details poster image */
+.full__details .poster {
+    text-align: center;
+    width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* other details  */
+.full__details .details {
+    background: #e2e2de;
+    font-size: 0.8rem;
+    padding: 2%;
+    width:100%
 }
 
 .details .header {

@@ -1,12 +1,14 @@
-import {key} from '../config';
+import { key } from "../config";
 
 export class Search {
+    // new object
     constructor(query) {
-        this._query = `s=${
-            query.title.replace(/ +(?= )/g, '').trim()
-            }${
+        // assign query to variable
+        this._query = `s=${query.title.replace(/ +(?= )/g, "").trim()}${
             $.isNumeric(query.year) ? "&y=" + query.year : ""
-            }&page=${query.page}`;
+        }&page=${query.page}`;
+
+        // assign page number
         this._page = query.page;
     }
 
@@ -14,30 +16,44 @@ export class Search {
         // https://www.omdbapi.com/?s=whip&y=2014&apikey=eac24ac
 
         try {
+
+            // make ajax call and save results in local
             this._results = await $.ajax({
                 type: "GET",
                 dataType: "json",
-                async:true,
-                timeout:3000,
+                async: true,
+                timeout: 3000,
                 beforeSend: () => {
-
-                    if (this._page === 1){
-                        $('.title').text('');
+                    // empty the title and empty the previous results
+                    if (this._page === 1) {
+                        $(".title").text("");
                         $(".search__results .row").html("");
                     }
-                    $(".search__results .container").append('<div class="text-center loader"><i class="ion-android-refresh"></i></div');
+                    // append  loader
+                    $(".search__results .container").append(
+                        '<div class="text-center loader"><i class="ion-android-refresh"></i></div'
+                    );
                 },
                 url: `https://www.omdbapi.com/?${this._query}&apikey=${key}`,
                 complete: () => {
-                    $('.loader').remove();
+
+                    // remove loader
+                    $(".loader").remove();
                 }
             });
         } catch (error) {
             console.log(error);
-            console.error('Something wrong with the api..!! Sometimes it fails to load.');
-            console.info('refresh and try it again')
+            console.error(
+                "Something wrong with the api..!! Sometimes it fails to load."
+            );
+            console.info("refresh and try it again");
             $(".full__details .container").html("");
-            if (this._page === 1) $('.search__results .title').text('Some Error..!! Refresh And Try Again..!!');
+
+            // show error message if ajax failed
+            if (this._page === 1)
+                $(".search__results .title").text(
+                    "Some Error..!! Refresh And Try Again..!!"
+                );
         }
     }
 }
