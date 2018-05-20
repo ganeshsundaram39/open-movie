@@ -1,0 +1,53 @@
+
+@media (min-width: 576px) {
+    :root {
+        font-size:18px;
+    }
+
+    .container {
+        max-width: 100%;
+    }
+ }
+
+@media (min-width: 768px) {
+
+    :root{
+        font-size: 20px;
+    }
+
+    .container.omovie{
+    margin: 10% auto;
+    width: 80%;
+    padding-top: 10px;
+    }
+
+    .back__to--top{
+    padding: 0px 1%;
+    }
+
+    .search div {
+        width: auto;
+        margin-bottom: 0;
+    }
+    .search [name="title"] {
+        width: 25vw;
+    }
+
+    .search [name="year"] {
+        width: 8vw;
+    }
+
+    .full__details .poster {
+        width:38%;
+        margin-right: 2%;
+    }
+
+    .full__details .details {
+        width:60%;
+    }
+
+    .imdb__votes {
+        display: block;
+    }
+
+}

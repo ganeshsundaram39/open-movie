@@ -1,4 +1,4 @@
-import { showSearchView,minToHour } from "./base";
+import { showSearchView,minToHour, formatUrl } from "./base";
 
 const backButton = () =>
    `<div class="back"><i class="ion-ios-arrow-back"></i>Back</div>`;
@@ -16,8 +16,8 @@ const headerHtml = head => `<div class="name">
 
 const posterHtml = poster => `<div class="poster">
                     <img src="${
-                        poster.url
-                    }" alt="${poster.title.toLowerCase()}onerror="this.onerror=null; this.src='./img/not-available.jpg'">
+                        formatUrl(poster.url)
+                    }" alt="${poster.title.toLowerCase()}" class="img-fluid" onerror="this.onerror=null; this.src='./img/not-available.jpg'">
                     </div>`;
 
 const bunchHtml = bunch => {
@@ -85,10 +85,9 @@ const awardsHtml = awards =>
     `<div class="header">Awards</div><div class="sub awards">${awards}</div>`;
 
 const websiteHtml = website =>
-    `<div class="header">Website</div><div class="sub"><a href="${website}">${website}</a></div>`;
+    `<div class="header">Website</div><div class="sub"><a href="${formatUrl(website)}">${formatUrl(website)}</a></div>`;
 
-const otherDetailsHtml = otherData => {
-    return `<div class="header bunch">${
+const otherDetailsHtml = otherData => `<div class="header bunch">${
         bunchHtml({
         rated: otherData.Rated,
         runtime: otherData.Runtime,
@@ -117,7 +116,7 @@ const otherDetailsHtml = otherData => {
     }${
         otherData.Website && otherData.Website !== "N/A" ? websiteHtml(otherData.Website) : ""
     }`;
-};
+
 
 export const renderFullDetails = data => {
     $(".full__details .container").html(
@@ -129,13 +128,13 @@ export const renderFullDetails = data => {
             year: data.Year,
             imdbRating: data.imdbRating
             })
-            }</div><div class="row"><div class="col-5">${
+            }</div><div class="row">${
                 posterHtml({
                 url:data.Poster !== "N/A"
                 ? data.Poster
                 : "./img/not-available.jpg",
                 title: data.Title
-        })}</div><div class="col-7"><div class="details">${otherDetailsHtml(data)}</div></div></div>`
+        })}<div class="details">${otherDetailsHtml(data)}</div></div>`
     );
 };
 

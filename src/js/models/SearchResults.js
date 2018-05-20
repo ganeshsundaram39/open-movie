@@ -17,6 +17,7 @@ export class Search {
             this._results = await $.ajax({
                 type: "GET",
                 dataType: "json",
+                async:true,
                 timeout:3000,
                 beforeSend: () => {
 

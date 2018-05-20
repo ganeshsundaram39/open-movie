@@ -29,6 +29,7 @@ const controlSearch = async (page = 1) => {
         window.location.hash=userInput.id;
 
     } else if (userInput.title) {
+        window.location.hash="";
         state.search = new Search(userInput);
 
         showSearchView();
@@ -76,7 +77,7 @@ const pagination = () => {
 
     if (
         $(window).scrollTop() + $(window).height() >
-        $(document).height() - 100
+        $(document).height() - 150
     ) {
         if (Number(state.search._results.totalResults) > 10) {
             if (
@@ -155,7 +156,9 @@ $(document).on('click','.full__details .back',goBack);
 
 $(() => {
     removeHtml();
+    NProgress.start();
     setTimeout(() => {
         $(".container.omovie").fadeIn("slow");
-    }, 1500);
+        NProgress.done();
+    }, 2000);
 });

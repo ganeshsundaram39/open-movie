@@ -94,3 +94,5 @@ export const minToHour = min => {
         return min;
     }
 };
+
+export const formatUrl = poster => poster.indexOf('https')===-1?poster.replace('http','https'):poster;
