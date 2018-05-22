@@ -7,21 +7,21 @@ const backButton = () =>
 // header section in full details
 const headerHtml = head => `<div class="name">
                                     <i class="ion-arrow-right-b"></i> ${
-                                        head.title
-                                    }(${head.year})</div>${
+    head.title
+    }(${head.year})</div>${
     head.imdbRating !== "N/A"
         ? '<div class="imdb__votes"><i class="ion-android-star"></i>' +
-          head.imdbRating +
-          "/10</div>"
+        head.imdbRating +
+        "/10</div>"
         : ""
-}`;
+    }`;
 
 
 // Poster image of movie
 const posterHtml = poster => `<div class="poster">
                     <img src="${formatUrl(
-                        poster.url
-                    )}" alt="${poster.title.toLowerCase()}" class="img-fluid" onerror="this.onerror=null; this.src='./img/not-available.jpg'">
+        poster.url
+    )}" alt="${poster.title.toLowerCase()}" class="img-fluid" onerror="this.onerror=null; this.src='./img/not-available.jpg'">
                     </div>`;
 
 
@@ -61,13 +61,7 @@ const plotHtml = plot => {
         if (plot.length <= 400) {
             return `<div class="sub plot">${plot}</div>`;
         } else {
-            return `<div class="sub plot">${Array.from(plot)
-                .slice(0, 400)
-                .join("")}<span class="more">${Array.from(plot)
-                .slice(400)
-                .join(
-                    ""
-                )}</span><span class="show__more"> Show More</span></div>`;
+            return `<div class="sub plot">${plot.slice(0, plot.lastIndexOf(" ", 400))}<span class="more">${plot.slice(plot.lastIndexOf(" ", 400))}</span><span class="show__more"> Show More</span></div>`;
         }
     }
 };
@@ -95,7 +89,7 @@ const ratingsHtml = ratings => {
         .map(
             rating =>
                 `<div class="single"><span class="value">${
-                    rating.Value
+                rating.Value
                 }</span><br><span class="source">${rating.Source}</span></div>`
         )
         .join("");
@@ -129,26 +123,26 @@ const otherDetailsHtml = otherData =>
         Writer: otherData.Writer,
         Director: otherData.Director
     })}${
-        otherData.Awards && otherData.Awards !== "N/A"
-            ? awardsHtml(otherData.Awards)
-            : ""
+    otherData.Awards && otherData.Awards !== "N/A"
+        ? awardsHtml(otherData.Awards)
+        : ""
     }${
-        otherData.Ratings && otherData.Ratings.length !== 0
-            ? ratingsHtml(otherData.Ratings)
-            : ""
+    otherData.Ratings && otherData.Ratings.length !== 0
+        ? ratingsHtml(otherData.Ratings)
+        : ""
     }${commonHtml({
         Production: otherData.Production,
         BoxOffice: otherData.BoxOffice
     })}${
-        otherData.Website && otherData.Website !== "N/A"
-            ? websiteHtml(otherData.Website)
-            : ""
+    otherData.Website && otherData.Website !== "N/A"
+        ? websiteHtml(otherData.Website)
+        : ""
     }`;
 
-    // 3 sections
-    // header
-    // poster
-    // otherdetails
+// 3 sections
+// header
+// poster
+// otherdetails
 export const renderFullDetails = data => {
     $(".full__details .container").html(
         `${backButton()}<div class="title">${headerHtml({
@@ -165,7 +159,7 @@ export const renderFullDetails = data => {
 
 
 // show more movie summary
-export const showMorePlot = function(e) {
+export const showMorePlot = function (e) {
     $(".details .more").show();
     $(this).hide();
 };

@@ -1,5 +1,4 @@
 // get input from text boxes and convert it into object
-
 export const getInput = type => {
 
     // title and year
